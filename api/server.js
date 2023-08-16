@@ -29,7 +29,7 @@ const connect = async () => {
     }
 }
 
-app.use(cors({ origin: ["http://localhost:5173","https://fiverrclone-sfqc.onrender.com"], credentials: true }));
+app.use(cors({ origin: "https://fiverrclone-sfqc.onrender.com", credentials: true }));
 
 app.use(express.static('build'));
 
