@@ -10,6 +10,11 @@ import OrderRoute from "./routes/order.route.js";
 import ReviewRoute from "./routes/review.route.js";
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import path from 'path';
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express()
 dotenv.config()
@@ -25,8 +30,15 @@ const connect = async () => {
 }
 
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use(express.static('build'));
+
+
 app.use(express.json())
 app.use(cookieParser())
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__filename,'./build/index.html'));
+  })
 
 app.use("/api/auth", AuthRoute);
 app.use("/api/conversations", ConversationRoute);
@@ -35,6 +47,11 @@ app.use("/api/orders", OrderRoute);
 app.use("/api/reviews", ReviewRoute);
 app.use("/api/messages", MessageRoute);
 app.use("/api/users", UserRoute);
+
+
+
+
+
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
