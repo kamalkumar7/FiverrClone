@@ -40,7 +40,9 @@ app.use(cookieParser())
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__filename,'./build/index.html'));
   })
-
+app.get("/hi",(req,res)=>{
+    res.json("Hello my friend");
+})
 app.use("/api/auth", AuthRoute);
 app.use("/api/conversations", ConversationRoute);
 app.use("/api/gigs", GigRoute);
