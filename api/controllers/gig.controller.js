@@ -39,6 +39,8 @@ export const getGig = async (req, res, next) => {
   }
 };
 export const getGigs = async (req, res, next) => {
+  console.log("hello")
+  console.log(req.query)
   const q = req.query;
   const filters = {
     ...(q.userId && { userId: q.userId }),

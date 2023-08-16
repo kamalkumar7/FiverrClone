@@ -33,6 +33,7 @@ const Orders = () => {
       }
     }
   };
+  console.log(data)
   return (
     <div className="orders">
       {isLoading ? (
@@ -45,13 +46,15 @@ const Orders = () => {
             <h1>Orders</h1>
           </div>
           <table>
-            <tr>
+            <thead><tr>
               <th>Image</th>
               <th>Title</th>
               <th>Price</th>
               <th>Contact</th>
-            </tr>
-            {data.map((order) => (
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((order) => (
               <tr key={order._id}>
                 <td>
                   <img className="image" src={order.img} alt="" />
@@ -68,6 +71,7 @@ const Orders = () => {
                 </td>
               </tr>
             ))}
+            </tbody>
           </table>
         </div>
       )}
